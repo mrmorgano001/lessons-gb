@@ -7,44 +7,56 @@ namespace MonthChecker
     {
         public static void Main(string[] args)
         {
-            try
-            {
                 Console.Write("Введите порядковый номер месяца: ");
-                var month = Convert.ToInt32(Console.ReadLine());
-                if (month == 1)
-                    Console.Write("Январь");
-                else if (month == 2)
-                    Console.Write("Февраль");
-                else if (month == 3)
-                    Console.Write("Март");
-                else if (month == 4)
-                    Console.Write("Апрель");
-                else if (month == 5)
-                    Console.Write("Май");
-                else if (month == 6)
-                    Console.Write("Июнь");
-                else if (month == 7)
-                    Console.Write("Июль");
-                else if (month == 8)
-                    Console.Write("Август");
-                else if (month == 9)
-                    Console.Write("Сентябрь");
-                else if (month == 10)
-                    Console.Write("Октябрь");
-                else if (month == 11)
-                    Console.Write("Ноябрь");
-                else if (month == 12)
-                    Console.Write("Декабрь");
-                else 
-                    Console.Write("Введите корректный номер месяца");
-                
-            }
-            catch (Exception e)
+            if (Int32.TryParse(Console.ReadLine(), out int month))
             {
-                Console.WriteLine(e.Message);
+                switch (month)
+                {
+                    case 1:
+                        Console.WriteLine("Январь");
+                        break;
+                    case 2:
+                        Console.WriteLine("Февраль");
+                        break;
+                    case 3:
+                        Console.WriteLine("Март");
+                        break;
+                    case 4:
+                        Console.WriteLine("Апрель");
+                        break;
+                    case 5:
+                        Console.WriteLine("Май");
+                        break;
+                    case 6:
+                        Console.WriteLine("Июнь");
+                        break;
+                    case 7:
+                        Console.WriteLine("Июль");
+                        break;
+                    case 8:
+                        Console.WriteLine("Август");
+                        break;
+                    case 9:
+                        Console.WriteLine("Сентябрь");
+                        break;
+                    case 10:
+                        Console.WriteLine("Октябрь");
+                        break;
+                    case 11:
+                        Console.WriteLine("Ноябрь");
+                        break;
+                    case 12:
+                        Console.WriteLine("Декабрь");
+                        break;
+                    default:
+                        Console.WriteLine("Такого месяца нет");
+                        break;
+                }
             }
-            Console.ReadKey();
-           
-        }
+            else
+                Console.WriteLine("Вы ввели не число");
+                Console.ReadKey();
+            }
+               
+        }          
     }
-}
