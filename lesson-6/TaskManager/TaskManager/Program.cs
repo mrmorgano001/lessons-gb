@@ -14,23 +14,39 @@ namespace TaskManager
                 Console.WriteLine("2. Завершить процесс по имени");
                 Console.WriteLine("3. Вывести все процессы на экран");
                 Console.WriteLine("4. Закрыть программу");
-                var choice = Convert.ToInt32(Console.ReadLine());
-                switch (choice)
+                int choice;
+                if (Int32.TryParse(Console.ReadLine(), out choice))
+                {
+                    switch (choice)
                 {
                     case 1:
                     {
                         var processes = Process.GetProcesses();
                         var length = processes.Length;
                         Console.WriteLine("Введите ID процесса");
-                        var id = Convert.ToInt32(Console.ReadLine());
-                        var success = false;
-                        foreach (var i in processes)
+                        int id;
+                        if (Int32.TryParse(Console.ReadLine(), out id))
                         {
-                            if (i.Id != id) continue;
-                            i.Kill();
-                            success = true;
+                            var success = false;
+                            try
+                            {
+                                foreach (var i in processes)
+                                {
+                                    if (i.Id != id) continue;
+                                    i.Kill();
+                                    success = true;
+                                }
+                                Console.WriteLine(success ? $"Процесс №{id} успешно завершен!" : "Такого процесса не найдено!");
+                            }
+                            catch
+                            {
+                                Console.WriteLine("Что-то пошло не так...Либо этот процесс нельзя завершить, выберите другой.");
+                            }
                         }
-                        Console.WriteLine(success ? $"Процесс №{id} успешно завершен!" : "Такого процесса не найдено!");
+                        else
+                        {
+                            Console.WriteLine("Необходимо ввести ID, а не имя.");
+                        }
                         break;
                     }
                     case 2:
@@ -39,12 +55,20 @@ namespace TaskManager
                         Console.WriteLine("Введите имя процесса: ");
                         var name = Console.ReadLine();
                         var success = false;
-                        foreach (var i in processes)
+                        try
                         {
-                            if (i.ProcessName != name) continue;
-                            i.Kill();
-                            success = true;
+                            foreach (var i in processes)
+                            {
+                                if (i.ProcessName != name) continue;
+                                i.Kill();
+                                success = true;
+                            }
                         }
+                        catch
+                        {
+                            Console.WriteLine("Что-то пошло не так...Либо этот процесс нельзя завершить, выберите другой.");
+                        }
+                        
 
                         Console.WriteLine(success ? $"Процесс {name} успешно завершен!":"Такого процесса не найдено!");
                         break;
@@ -66,6 +90,12 @@ namespace TaskManager
                         Console.WriteLine("Такой команды нет. Попробуйте еще раз.");
                         break;
                 }
+                }
+                else
+                {
+                    Console.WriteLine("Введите корректную цифру меню.");
+                }
+                
             } while (true);
                 
         }
