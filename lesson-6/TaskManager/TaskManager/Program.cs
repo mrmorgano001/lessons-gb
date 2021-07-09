@@ -25,7 +25,7 @@ namespace TaskManager
                     {
                         var processes = Process.GetProcesses();
                         var length = processes.Length;
-                        Console.WriteLine("Введите ID процесса");
+                        Console.Write("Введите ID процесса: ");
                         if (TryParse(Console.ReadLine(), out var id))
                         {
                             var success = false;
@@ -53,7 +53,7 @@ namespace TaskManager
                     case 2:
                     {
                         var processes = Process.GetProcesses();
-                        Console.WriteLine("Введите имя процесса: ");
+                        Console.Write("Введите имя процесса: ");
                         var name = Console.ReadLine();
                         var success = false;
                         try
