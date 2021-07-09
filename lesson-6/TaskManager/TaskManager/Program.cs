@@ -83,7 +83,7 @@ namespace TaskManager
                     }
                     case 4:
                     {
-                        var filename = "text.txt";
+                        var filename = "process_list.txt";
                         var processes = Process.GetProcesses();
                         File.WriteAllText(filename,string.Empty);
                         foreach (var i in processes)
