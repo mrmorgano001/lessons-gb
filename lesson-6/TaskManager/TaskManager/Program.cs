@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.IO;
 
 namespace TaskManager
 {
@@ -13,7 +14,8 @@ namespace TaskManager
                 Console.WriteLine("1. Завершить процесс по ID");
                 Console.WriteLine("2. Завершить процесс по имени");
                 Console.WriteLine("3. Вывести все процессы на экран");
-                Console.WriteLine("4. Закрыть программу");
+                Console.WriteLine("4. Выгрузить список процессов в файл");
+                Console.WriteLine("5. Закрыть программу");
                 int choice;
                 if (Int32.TryParse(Console.ReadLine(), out choice))
                 {
@@ -83,6 +85,19 @@ namespace TaskManager
                         break;
                     }
                     case 4:
+                    {
+                        var filename = "text.txt";
+                        var processes = Process.GetProcesses();
+                        File.WriteAllText(filename,String.Empty);
+                        foreach (var i in processes)
+                        {
+                            File.AppendAllText(filename, Environment.NewLine + i.ToString() + " ID: " + i.Id);
+                        }
+                            
+                       
+                        break;
+                    }
+                    case 5:
                         Console.WriteLine("Выход...");
                         Environment.Exit(0);
                         break;
