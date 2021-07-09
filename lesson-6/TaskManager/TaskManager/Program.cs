@@ -69,8 +69,6 @@ namespace TaskManager
                         {
                             Console.WriteLine("Что-то пошло не так...Либо этот процесс нельзя завершить, выберите другой.");
                         }
-                        
-
                         Console.WriteLine(success ? $"Процесс {name} успешно завершен!":"Такого процесса не найдено!");
                         break;
                     }
