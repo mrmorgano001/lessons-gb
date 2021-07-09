@@ -1,6 +1,7 @@
-﻿using System;
+using System;
 using System.Diagnostics;
 using System.IO;
+using static System.Int32;
 
 namespace TaskManager
 {
@@ -16,8 +17,7 @@ namespace TaskManager
                 Console.WriteLine("3. Вывести все процессы на экран");
                 Console.WriteLine("4. Выгрузить список процессов в файл");
                 Console.WriteLine("5. Закрыть программу");
-                int choice;
-                if (Int32.TryParse(Console.ReadLine(), out choice))
+                if (TryParse(Console.ReadLine(), out var choice))
                 {
                     switch (choice)
                 {
@@ -25,9 +25,8 @@ namespace TaskManager
                     {
                         var processes = Process.GetProcesses();
                         var length = processes.Length;
-                        Console.WriteLine("Введите ID процесса");
-                        int id;
-                        if (Int32.TryParse(Console.ReadLine(), out id))
+                        Console.Write("Введите ID процесса: ");
+                        if (TryParse(Console.ReadLine(), out var id))
                         {
                             var success = false;
                             try
@@ -54,7 +53,7 @@ namespace TaskManager
                     case 2:
                     {
                         var processes = Process.GetProcesses();
-                        Console.WriteLine("Введите имя процесса: ");
+                        Console.Write("Введите имя процесса: ");
                         var name = Console.ReadLine();
                         var success = false;
                         try
@@ -70,8 +69,6 @@ namespace TaskManager
                         {
                             Console.WriteLine("Что-то пошло не так...Либо этот процесс нельзя завершить, выберите другой.");
                         }
-                        
-
                         Console.WriteLine(success ? $"Процесс {name} успешно завершен!":"Такого процесса не найдено!");
                         break;
                     }
@@ -86,15 +83,13 @@ namespace TaskManager
                     }
                     case 4:
                     {
-                        var filename = "text.txt";
+                        var filename = "process_list.txt";
                         var processes = Process.GetProcesses();
-                        File.WriteAllText(filename,String.Empty);
+                        File.WriteAllText(filename,string.Empty);
                         foreach (var i in processes)
                         {
                             File.AppendAllText(filename, Environment.NewLine + i.ToString() + " ID: " + i.Id);
                         }
-                            
-                       
                         break;
                     }
                     case 5:
@@ -103,8 +98,8 @@ namespace TaskManager
                         break;
                     default:
                         Console.WriteLine("Такой команды нет. Попробуйте еще раз.");
-                        break;
-                }
+                        break; 
+                } 
                 }
                 else
                 {
