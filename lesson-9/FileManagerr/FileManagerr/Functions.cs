@@ -7,6 +7,7 @@ namespace FileManager
     {
         public static void Header()
         {
+            Console.SetWindowSize(120, 30);
             Console.BackgroundColor = ConsoleColor.DarkBlue;
             Console.ForegroundColor = ConsoleColor.White;
             Console.Clear();
@@ -15,9 +16,9 @@ namespace FileManager
             Console.WriteLine("│ ls <path> - просмотр файлов каталога       cp <path1> <path2> - копирование файла (каталога)                       │");
             Console.WriteLine("│                                                                                                                    │");
             Console.WriteLine("│ rm <path> - удаление каталога(рекурсивно)/файла    file <file> - вывод информации о файле                          │");
-            Console.WriteLine("│ введите quit для выхода                                                                                            │");
+            Console.WriteLine("│ введите quit для выхода                <- предыдущая страница      -> следующая страница                           │");
             Console.WriteLine("└────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘");
-            Console.SetWindowSize(120, 30);
+            
         }
         public static void DirectoryViewer(string currentDirectory)
         {
