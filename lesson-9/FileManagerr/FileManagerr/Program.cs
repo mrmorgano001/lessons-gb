@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 
 namespace FileManager
 {
@@ -9,17 +10,11 @@ namespace FileManager
             string currentDirectory;
             var command = string.Empty;
             Functions.Header();
-            if (FileManagerr.Properties.Settings.Default.lastDirectory != null)
-            {
-                currentDirectory = FileManagerr.Properties.Settings.Default.lastDirectory;
-            }
-            else
-                currentDirectory = @"C:\"; 
+            currentDirectory = FileManagerr.Properties.Settings.Default.lastDirectory ?? @"C:\"; 
             Functions.DirectoryViewer(currentDirectory);
-            Console.WriteLine("Введите команду: ");
-
             while (command.ToUpper() != "QUIT")
             {
+                Console.WriteLine("COMMAND: ");
                 command = Console.ReadLine();
                 Functions.KeyHandler(command);
             }

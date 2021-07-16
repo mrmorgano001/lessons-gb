@@ -46,8 +46,8 @@ namespace FileManager
             } 
         }
 
-        public static void FileViewer(string targetDirectory)
-        {
+        private static void FileViewer(string targetDirectory)
+        { 
             try
             {
                 var getFiles = Directory.GetFiles(targetDirectory);
@@ -64,7 +64,7 @@ namespace FileManager
         }
         public static void KeyHandler(string command)
         {
-            string[] subs = command.Split(' ');
+            var subs = command.Split(' ');
             if (command != String.Empty)
             {
                 try
@@ -83,6 +83,8 @@ namespace FileManager
                     CopyFile(subs[1], subs[2]);
                 if (subs[0].ToUpper() == "RM")
                     DeleteFile(subs[1]);
+                if (subs[0].ToUpper() == "FILE")
+                    FileInformation(subs[1]);
             }
             else
             {
@@ -97,6 +99,21 @@ namespace FileManager
         private static void DeleteFile(string filename)
         {
             File.Delete(filename);
+        }
+
+        private static void FileInformation(string filename)
+        {
+            var fileInfo = new FileInfo(filename);
+            var size = fileInfo.Length;
+            var path = fileInfo.DirectoryName;
+            var extension = fileInfo.Extension;
+            var creationTimeDate = fileInfo.CreationTime.Date;
+            var lastWriteTime = fileInfo.LastWriteTimeUtc.Date;
+            Console.WriteLine("Размер: " + size + " байт");
+            Console.WriteLine("Размещение: " + path);
+            Console.WriteLine("Расширение: " + extension);
+            Console.WriteLine("Дата создания: " + creationTimeDate);
+            Console.WriteLine("Дата последнего изменения: " + lastWriteTime);
         }
     }
 }
