@@ -98,7 +98,20 @@ namespace FileManager
         }
         private static void DeleteFile(string filename)
         {
-            File.Delete(filename);
+            try
+            {
+                File.Delete(filename);
+                Console.WriteLine($"{filename} успешно удален!");
+            }
+            catch (UnauthorizedAccessException)
+            {
+                Console.WriteLine("Вы не можете удалить этот файл");
+            }
+            catch (IndexOutOfRangeException)
+            {
+                Console.WriteLine("Укажите файл/папку");
+            }
+
         }
 
         private static void FileInformation(string filename)
