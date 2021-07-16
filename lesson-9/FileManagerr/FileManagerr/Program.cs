@@ -11,9 +11,9 @@ namespace FileManager
             Functions.Header();
             currentDirectory = FileManagerr.Properties.Settings.Default.lastDirectory ?? @"C:\"; 
             Functions.DirectoryViewer(currentDirectory);
-            while (command.ToUpper() != "QUIT")
+            while (command.ToUpper() != "QUIT" && command.ToUpper() != "Q" && command.ToUpper() != "EXIT")
             {
-                Console.WriteLine("COMMAND: ");
+                Console.Write(": ");
                 command = Console.ReadLine();
                 Functions.KeyHandler(command);
             }
