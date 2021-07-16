@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 
 namespace FileManager
@@ -28,7 +29,7 @@ namespace FileManager
             {
                 var viewDirectories = Directory.GetDirectories(currentDirectory);
                 foreach (var directoryName in viewDirectories)
-                {
+                { 
                     var currentDir = directoryName;
                     Console.WriteLine("──" + directoryName);
                     FileViewer(currentDir);
@@ -52,7 +53,13 @@ namespace FileManager
             catch (ArgumentException)
             {
                 Console.WriteLine("Недопустимые знаки.");
-            } 
+            }
+        }
+
+        public static void Paginator(string line)
+        {
+            List<string> lines = new List<string>();
+            lines.Add(line);
         }
 
         private static void FileViewer(string targetDirectory)
@@ -93,9 +100,8 @@ namespace FileManager
                     CopyFile(subs[1], subs[2]);
                 if (subs[0].ToUpper() == "RM")
                 {
-                    if (subs[1] )
                     DeleteFile(subs[1]);
-                    DeleteDirectory(subs[1]);
+                    //DeleteDirectory(subs[1]);
                 }
                 if (subs[0].ToUpper() == "FILE")
                     FileInformation(subs[1]);
