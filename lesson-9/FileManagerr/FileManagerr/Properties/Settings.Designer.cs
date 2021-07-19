@@ -34,5 +34,17 @@ namespace FileManagerr.Properties {
                 this["lastDirectory"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("10")]
+        public int pageCount {
+            get {
+                return ((int)(this["pageCount"]));
+            }
+            set {
+                this["pageCount"] = value;
+            }
+        }
     }
 }

@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace FileManager
 {
@@ -8,7 +8,7 @@ namespace FileManager
     {
         public static void Header()
         {
-            Console.SetWindowSize(150, 30);
+            Console.SetWindowSize(120, 30);
             Console.BackgroundColor = ConsoleColor.DarkBlue;
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine("┌─────────────────────────────────────────────────────FILE-MANAGER───────────────────────────────────────────────────┐");
@@ -23,25 +23,20 @@ namespace FileManager
             Console.WriteLine("└────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘");
             
         }
-        public static void DirectoryViewer(string currentDirectory)
+        
+        public static void DirectoryViewer(string currentDirectory,int page)
         {
+            Header();
+            var pageCount = FileManagerr.Properties.Settings.Default.pageCount;
+            var pageNumber = page;
             try
             {
-                var viewDirectories = Directory.GetDirectories(currentDirectory);
-                foreach (var directoryName in viewDirectories)
-                { 
-                    var currentDir = directoryName;
+                var viewDirectories = Directory.GetDirectories(currentDirectory).ToList();
+                var result = viewDirectories.Skip(pageNumber * pageCount).Take(pageCount);
+                foreach (var directoryName in result)
+                {
                     Console.WriteLine("──" + directoryName);
-                    FileViewer(currentDir);
-                    try
-                    {
-                        Console.Write("└──");
-                        DirectoryViewer(directoryName);
-                    }
-                    catch (UnauthorizedAccessException)
-                    {
-                        Console.WriteLine("Отказано в доступе");
-                    }
+                    FileViewer(directoryName);
                 }
                 FileManagerr.Properties.Settings.Default.lastDirectory = currentDirectory;
                 FileManagerr.Properties.Settings.Default.Save();
@@ -56,12 +51,6 @@ namespace FileManager
             }
         }
 
-        public static void Paginator(string line)
-        {
-            List<string> lines = new List<string>();
-            lines.Add(line);
-        }
-
         private static void FileViewer(string targetDirectory)
         { 
             try
@@ -69,7 +58,7 @@ namespace FileManager
                 var getFiles = Directory.GetFiles(targetDirectory);
                 foreach (var filename in getFiles)
                 {
-                    Console.WriteLine("└──────" + filename);
+                    Console.WriteLine("└────" + filename);
                 }
             }
             catch (UnauthorizedAccessException)
@@ -78,41 +67,37 @@ namespace FileManager
             }
             
         }
+        
         public static void KeyHandler(string command)
         {
-            
             var subs = command.Split(' ');
-            if (command != String.Empty)
+            if (command == string.Empty) Console.Clear();
+            switch (subs[0].ToUpper())
             {
-                try
-                {
-                    if (subs[0].ToUpper() == "LS")
-                        DirectoryViewer(subs[1]);
-                }
-                catch (IndexOutOfRangeException)
-                {
-                    Console.Clear();
-                    Header();
-                    Console.WriteLine("Укажите директорию.");
-                }
-                
-                if (subs[0].ToUpper() == "CP")
-                    CopyFile(subs[1], subs[2]);
-                if (subs[0].ToUpper() == "RM")
-                {
+                case "LS":
+                    DirectoryViewer(subs[1], int.Parse(subs[3]));
+                    break;
+                    case "CP":
+                    CopyFile(subs[1],subs[2]);
+                    break;
+                    case "RM":
                     DeleteFile(subs[1]);
                     //DeleteDirectory(subs[1]);
-                }
-                if (subs[0].ToUpper() == "FILE")
+                    break;
+                    case "FILE":
                     FileInformation(subs[1]);
-                if (subs[0].ToUpper() == "DIR")
+                    break;
+                case "DIR":
                     DirectoryInfo(subs[1]);
+                    break;
+                case "CLEAR":
+                    Console.Clear();
+                    Header();
+                    break;
+                default:
+                    Console.WriteLine("Такой команды нет");
+                    break;
             }
-            else
-            {
-                Console.WriteLine("Команда не может быть пустая.");
-            }
-
         }
         private static void CopyFile(string firstCatalog, string secondCatalog)
         {

@@ -8,9 +8,8 @@ namespace FileManager
         {
             string currentDirectory;
             var command = string.Empty;
-            Functions.Header();
             currentDirectory = FileManagerr.Properties.Settings.Default.lastDirectory ?? @"C:\"; 
-            Functions.DirectoryViewer(currentDirectory);
+            Functions.DirectoryViewer(currentDirectory,0);
             while (command.ToUpper() != "QUIT" && command.ToUpper() != "Q" && command.ToUpper() != "EXIT")
             {
                 Console.Write(": ");
