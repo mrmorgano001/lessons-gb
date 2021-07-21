@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
@@ -67,55 +68,186 @@ namespace FileManager
             }
             
         }
-        
-        public static void KeyHandler(string command)
+
+        public static void CommandHandler(string command)
         {
-            var subs = command.Split(' ');
-            if (command == string.Empty) Console.Clear();
-            switch (subs[0].ToUpper())
+            var switchArray = command.Split(' ');
+            if (switchArray[0].ToUpper() == "LS")
             {
-                case "LS":
-                    DirectoryViewer(subs[1], int.Parse(subs[3]));
-                    break;
-                    case "CP":
-                    CopyFile(subs[1],subs[2]);
-                    break;
-                    case "RM":
-                    DeleteFile(subs[1]);
-                    //DeleteDirectory(subs[1]);
-                    break;
-                    case "FILE":
-                    FileInformation(subs[1]);
-                    break;
-                case "DIR":
-                    DirectoryInfo(subs[1]);
-                    break;
-                case "CLEAR":
-                    Console.Clear();
-                    Header();
-                    break;
-                default:
-                    Console.WriteLine("Такой команды нет");
-                    break;
+                Console.Clear();
+                if (switchArray.Length < 2)
+                {
+                    Console.WriteLine("Введите путь");
+                }
+                else
+                {
+                    if (switchArray.Length == 2)
+                    {
+                        DirectoryViewer(switchArray[1],0);
+                    }
+                    else
+                    {
+                        if (switchArray.Length >= 3)
+                        {
+                            if (switchArray[2].ToUpper() == "-P")
+                            {
+                                try
+                                {
+                                    DirectoryViewer(switchArray[1], int.Parse(switchArray[3]));
+                                }
+                                catch (IndexOutOfRangeException)
+                                {
+                                    Console.WriteLine("Введите верный параметр");
+                                }
+                                catch (ArgumentOutOfRangeException)
+                                {
+                                    Console.WriteLine("Введите число");
+                                }
+                                catch (FormatException)
+                                {
+                                    Console.WriteLine("Введите число");
+                                }
+                                catch (OverflowException)
+                                {
+                                    Console.WriteLine("Введите корректный номер страницы");
+                                }
+
+                            } else Console.WriteLine("Введите корректный параметр");
+                        }
+                    }
+                }
+            }
+
+            if (switchArray[0].ToUpper() == "CP")
+            { 
+                Console.Clear();
+                try
+                {
+                    if (switchArray.Length == 3)
+                    {
+                        if (Directory.Exists(switchArray[1]) && Directory.Exists(switchArray[2]))
+                        {
+                            CopyCatalog(switchArray[1], switchArray[2]);
+                        }
+                        else
+                        {
+                            CopyFile(switchArray[1], switchArray[2]);
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("Укажите начальный и конечный файл/папку");
+                    }
+                }
+                catch (FileNotFoundException)
+                {
+                    Console.WriteLine("Файл или папка не найдены");
+                }
+                catch (ArgumentException)
+                {
+                    Console.WriteLine("Введите имя папки/файла");
+                }
+            }
+
+            if (switchArray[0].ToUpper() == "FILE")
+            {
+                try
+                {
+                    FileInformation(switchArray[1]);
+                }
+                catch (ArgumentOutOfRangeException)
+                {
+                    Console.WriteLine("Введите корректное имя файла");
+                }
+            }
+
+            if (switchArray[0].ToUpper() == "DIR")
+            {
+                try
+                {
+                    DirectoryInfo(switchArray[1]);
+                }
+                catch (ArgumentOutOfRangeException)
+                {
+                    Console.WriteLine("Введите имя папки");
+                }
+                catch (IndexOutOfRangeException)
+                {
+                    Console.WriteLine("Введите имя папки");
+                }
+            }
+
+            if (switchArray[0].ToUpper() == "CLEAR")
+            {
+                Console.Clear();
+                Header();
+            }
+
+            if (switchArray[0].ToUpper() == "RM")
+            {
+                if (File.Exists(switchArray[1]))
+                {
+                    DeleteFile(switchArray[1]);
+                }
+                else
+                {
+                    DeleteDirectory(switchArray[1]);
+                }
             }
         }
-        private static void CopyFile(string firstCatalog, string secondCatalog)
+        private static void CopyFile(string firstFile, string secondFile)
         {
-            File.Copy(firstCatalog, secondCatalog);
+            File.Copy(firstFile, secondFile);
+            Console.WriteLine($"Файл {firstFile} успешно скопирован");
+        }
+
+        private static void CopyCatalog(string firstCatalog, string secondCatalog)
+        {
+            Directory.Move(firstCatalog,secondCatalog);
         }
 
         private static void DirectoryInfo(string directoryPath)
         {
-            var creationTime = Directory.GetCreationTime(directoryPath);
-            var lastWriteTime = Directory.GetLastWriteTime(directoryPath);
-            var filesCount = Directory.GetFiles(directoryPath).Length;
-            Console.WriteLine($"Дата создания директории: {creationTime}");
-            Console.WriteLine($"Дата последней записи: {lastWriteTime}");
-            Console.WriteLine($"Количество файлов: {filesCount}");
+            try
+            {
+                var creationTime = Directory.GetCreationTime(directoryPath);
+                var lastWriteTime = Directory.GetLastWriteTime(directoryPath);
+                var filesCount = Directory.GetFiles(directoryPath).Length;
+                Console.WriteLine($"Дата создания директории: {creationTime}");
+                Console.WriteLine($"Дата последней записи: {lastWriteTime}");
+                Console.WriteLine($"Количество файлов: {filesCount}");
+            }
+            catch (DirectoryNotFoundException)
+            {
+                Console.WriteLine("Директория не найдена");
+            }
+            catch (ArgumentException)
+            {
+                Console.WriteLine("Введите корректное имя папки");
+            }
+            catch (IndexOutOfRangeException)
+            {
+                Console.WriteLine("Имя папки не может быть пустое");
+            }
         }
         private static void DeleteDirectory(string directoryPath)
         {
-            Directory.Delete(directoryPath);
+            try
+            {
+                Console.WriteLine($"Вы уверены что хотите удалить {directoryPath}? Yes/No");
+                var choose = Console.ReadLine();
+                if (choose.ToUpper() == "Y" || choose.ToUpper() == "YES")
+                {
+                    Directory.Delete(directoryPath);
+                    Console.WriteLine($"Каталог {directoryPath} успешно удален!");
+                } else Console.WriteLine("Удаление файла отменено.");
+               
+            }
+            catch (UnauthorizedAccessException)
+            {
+                Console.WriteLine("Вы не можете удалить этот каталог");
+            }
+            
         }
         private static void DeleteFile(string filename)
         {
@@ -123,7 +255,7 @@ namespace FileManager
             {
                 Console.WriteLine($"Вы уверены что хотите удалить {filename}? Yes/No");
                 var choose = Console.ReadLine();
-                if (choose == "Y" || choose == "Yes")
+                if (choose.ToUpper() == "Y" || choose.ToUpper() == "YES")
                 {
                     File.Delete(filename);
                     Console.WriteLine($"{filename} успешно удален!");
@@ -156,6 +288,10 @@ namespace FileManager
             catch (IndexOutOfRangeException)
             {
                 Console.WriteLine("");
+            }
+            catch (FileNotFoundException)
+            {
+                Console.WriteLine("Файл не найден");
             }
         }
     }

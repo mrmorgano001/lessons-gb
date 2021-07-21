@@ -14,7 +14,7 @@ namespace FileManager
             {
                 Console.Write(": ");
                 command = Console.ReadLine();
-                Functions.KeyHandler(command);
+                Functions.CommandHandler(command);
             }
         }
     }
