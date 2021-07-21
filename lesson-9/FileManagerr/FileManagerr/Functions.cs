@@ -191,7 +191,7 @@ namespace FileManager
                 }
                 else
                 {
-                    //DeleteDirectory(switchArray[1]);
+                    DeleteDirectory(switchArray[1]);
                 }
             }
         }
@@ -238,6 +238,7 @@ namespace FileManager
                 var choose = Console.ReadLine();
                 if (choose.ToUpper() == "Y" || choose.ToUpper() == "YES")
                 { 
+                    Directory.Delete(directoryPath,true);
                     Console.WriteLine($"Каталог {directoryPath} успешно удален!");
                 } else Console.WriteLine("Удаление каталога отменено.");
                
