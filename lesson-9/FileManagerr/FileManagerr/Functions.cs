@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
@@ -203,7 +202,15 @@ namespace FileManager
 
         private static void CopyCatalog(string firstCatalog, string secondCatalog)
         {
-            Directory.Move(firstCatalog,secondCatalog);
+            foreach (var directory in Directory.GetDirectories(firstCatalog,"*",SearchOption.AllDirectories))
+            {
+                Directory.CreateDirectory(directory.Replace(firstCatalog, secondCatalog));
+            }
+
+            foreach (var file in Directory.GetFiles(firstCatalog, "*.*", SearchOption.AllDirectories))
+            {
+                File.Copy(file, file.Replace(firstCatalog, secondCatalog),true);
+            }
         }
 
         private static void DirectoryInfo(string directoryPath)
