@@ -191,7 +191,7 @@ namespace FileManager
                 }
                 else
                 {
-                    DeleteDirectory(switchArray[1]);
+                    //DeleteDirectory(switchArray[1]);
                 }
             }
         }
@@ -234,13 +234,12 @@ namespace FileManager
         {
             try
             {
-                Console.WriteLine($"Вы уверены что хотите удалить {directoryPath}? Yes/No");
+                Console.WriteLine($"Вы уверены что хотите удалить {directoryPath}? В ней могут находиться файлы Yes/No");
                 var choose = Console.ReadLine();
                 if (choose.ToUpper() == "Y" || choose.ToUpper() == "YES")
-                {
-                    Directory.Delete(directoryPath);
+                { 
                     Console.WriteLine($"Каталог {directoryPath} успешно удален!");
-                } else Console.WriteLine("Удаление файла отменено.");
+                } else Console.WriteLine("Удаление каталога отменено.");
                
             }
             catch (UnauthorizedAccessException)
