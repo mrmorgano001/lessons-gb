@@ -23,6 +23,26 @@ namespace FileManager
             Console.WriteLine("└────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘");
             
         }
+
+        public static void SerializeConf()
+        {
+            string filename = "config.cfg";
+            string lastDir = FileManagerr.Properties.Settings.Default.lastDirectory;
+            int pageCount = FileManagerr.Properties.Settings.Default.pageCount;
+            string[] confString = new[] {"lastDirectory = " + lastDir,"pageCount = " + pageCount.ToString()};
+            File.WriteAllLines(filename,confString);
+        }
+
+        public static void DeserializeConf()
+        {
+            string filename = "config.cfg";
+            var confString = File.ReadAllLines(filename);
+            var lastDir = confString[0].Split(' ');
+            var pageCount = confString[1].Split(' ');
+            FileManagerr.Properties.Settings.Default.lastDirectory = lastDir[2];
+            FileManagerr.Properties.Settings.Default.pageCount = int.Parse(pageCount[2]);
+
+        }
         
         public static void DirectoryViewer(string currentDirectory,int page)
         {

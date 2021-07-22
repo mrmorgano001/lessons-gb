@@ -6,6 +6,7 @@ namespace FileManager
     {
         static void Main(string[] args)
         {
+            Functions.DeserializeConf();
             string currentDirectory;
             var command = string.Empty;
             currentDirectory = FileManagerr.Properties.Settings.Default.lastDirectory ?? @"C:\"; 
@@ -16,6 +17,7 @@ namespace FileManager
                 command = Console.ReadLine();
                 Functions.CommandHandler(command);
             }
+            Functions.SerializeConf();
         }
     }
 }

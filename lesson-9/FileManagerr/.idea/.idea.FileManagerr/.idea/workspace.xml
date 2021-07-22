@@ -4,7 +4,11 @@
     <projectFile>FileManagerr/FileManagerr.csproj</projectFile>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b2cf97b8-6934-48ec-b1ea-e45d8412e0d6" name="Default Changelist" comment="Updated" />
+    <list default="true" id="b2cf97b8-6934-48ec-b1ea-e45d8412e0d6" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.FileManagerr/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.FileManagerr/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FileManagerr/Functions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FileManagerr/Functions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FileManagerr/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FileManagerr/Program.cs" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -25,8 +29,8 @@
     <changedPaths>
       <option value="$PROJECT_DIR$/FileManagerr/Properties/AssemblyInfo.cs" />
       <option value="$PROJECT_DIR$/FileManagerr/Properties/Settings.settings" />
-      <option value="$PROJECT_DIR$/FileManagerr/Program.cs" />
       <option value="$PROJECT_DIR$/FileManagerr/Functions.cs" />
+      <option value="$PROJECT_DIR$/FileManagerr/Program.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1vLjNUyACIgRyhs80iogxHTxPIG" />
@@ -82,6 +86,8 @@
       <workItem from="1626670548377" duration="3181000" />
       <workItem from="1626675225495" duration="16443000" />
       <workItem from="1626844648377" duration="22832000" />
+      <workItem from="1626931139093" duration="2316000" />
+      <workItem from="1626933598502" duration="1325000" />
     </task>
     <task id="LOCAL-00001" summary="Updated">
       <created>1626874339800</created>
@@ -108,6 +114,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
