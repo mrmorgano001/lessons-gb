@@ -4,12 +4,7 @@
     <projectFile>FileManagerr/FileManagerr.csproj</projectFile>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b2cf97b8-6934-48ec-b1ea-e45d8412e0d6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/FileManagerr/Exceptions.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.FileManagerr/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.FileManagerr/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FileManagerr/FileManagerr.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/FileManagerr/FileManagerr.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FileManagerr/Functions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FileManagerr/Functions.cs" afterDir="false" />
-    </list>
+    <list default="true" id="b2cf97b8-6934-48ec-b1ea-e45d8412e0d6" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -96,7 +91,7 @@
       <workItem from="1626947556861" duration="1479000" />
       <workItem from="1626949909624" duration="1345000" />
       <workItem from="1626951720524" duration="1780000" />
-      <workItem from="1626953755101" duration="295000" />
+      <workItem from="1626953755101" duration="649000" />
     </task>
     <task id="LOCAL-00001" summary="Updated">
       <created>1626874339800</created>
