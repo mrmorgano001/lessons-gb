@@ -15,9 +15,9 @@ namespace FileManager
             Console.WriteLine("│ COMMANDS:                                                                                                          │");
             Console.WriteLine("│ ls <path> - Просмотр файлов каталога                             cp <path1> <path2> - Копирование файла (каталога) │");
             Console.WriteLine("│                                                                                                                    │");
-            Console.WriteLine("│ dir <path> - Информация о катаголе                                                                                 │");
+            Console.WriteLine("│ dir <path> - Информация о катаголе                               clear - для очистки консоли                       │");
             Console.WriteLine("│                                                                                                                    │");
-            Console.WriteLine("│ rm <path> - Удаление каталога(рекурсивно)/файла                             file <file> - Вывод информации о файле │");
+            Console.WriteLine("│ rm <path> - Удаление каталога(рекурсивно)/файла                  file <file> - Вывод информации о файле            │");
             Console.WriteLine("│                                                                                                                    │");
             Console.WriteLine("│ Введите quit, q, exit для выхода                                                                                   │");
             Console.WriteLine("└────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘");
@@ -26,16 +26,16 @@ namespace FileManager
 
         public static void SerializeConf()
         {
-            string filename = "config.cfg";
-            string lastDir = FileManagerr.Properties.Settings.Default.lastDirectory;
-            int pageCount = FileManagerr.Properties.Settings.Default.pageCount;
-            string[] confString = new[] {"lastDirectory = " + lastDir,"pageCount = " + pageCount.ToString()};
+            var filename = "config.cfg";
+            var lastDir = FileManagerr.Properties.Settings.Default.lastDirectory;
+            var pageCount = FileManagerr.Properties.Settings.Default.pageCount;
+            var confString = new[] {"lastDirectory = " + lastDir,"pageCount = " + pageCount.ToString()};
             File.WriteAllLines(filename,confString);
         }
 
         public static void DeserializeConf()
         {
-            string filename = "config.cfg";
+            var filename = "config.cfg";
             var confString = File.ReadAllLines(filename);
             var lastDir = confString[0].Split(' ');
             var pageCount = confString[1].Split(' ');
@@ -48,11 +48,10 @@ namespace FileManager
         {
             Header();
             var pageCount = FileManagerr.Properties.Settings.Default.pageCount;
-            var pageNumber = page;
             try
             {
                 var viewDirectories = Directory.GetDirectories(currentDirectory).ToList();
-                var result = viewDirectories.Skip(pageNumber * pageCount).Take(pageCount);
+                var result = viewDirectories.Skip(page * pageCount).Take(pageCount);
                 foreach (var directoryName in result)
                 {
                     Console.WriteLine("──" + directoryName);
@@ -240,9 +239,11 @@ namespace FileManager
                 var creationTime = Directory.GetCreationTime(directoryPath);
                 var lastWriteTime = Directory.GetLastWriteTime(directoryPath);
                 var filesCount = Directory.GetFiles(directoryPath).Length;
+                var directoriesCount = Directory.GetDirectories(directoryPath).Length;
                 Console.WriteLine($"Дата создания директории: {creationTime}");
                 Console.WriteLine($"Дата последней записи: {lastWriteTime}");
                 Console.WriteLine($"Количество файлов: {filesCount}");
+                Console.WriteLine($"Количество папок: {directoriesCount}");
             }
             catch (DirectoryNotFoundException)
             {
@@ -263,7 +264,7 @@ namespace FileManager
             {
                 Console.WriteLine($"Вы уверены что хотите удалить {directoryPath}? В ней могут находиться файлы Yes/No");
                 var choose = Console.ReadLine();
-                if (choose.ToUpper() == "Y" || choose.ToUpper() == "YES")
+                if (choose != null && (choose.ToUpper() == "Y" || choose.ToUpper() == "YES"))
                 { 
                     Directory.Delete(directoryPath,true);
                     Console.WriteLine($"Каталог {directoryPath} успешно удален!");
@@ -282,7 +283,7 @@ namespace FileManager
             {
                 Console.WriteLine($"Вы уверены что хотите удалить {filename}? Yes/No");
                 var choose = Console.ReadLine();
-                if (choose.ToUpper() == "Y" || choose.ToUpper() == "YES")
+                if (choose != null && (choose.ToUpper() == "Y" || choose.ToUpper() == "YES"))
                 {
                     File.Delete(filename);
                     Console.WriteLine($"{filename} успешно удален!");
