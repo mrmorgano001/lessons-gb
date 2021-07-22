@@ -7,11 +7,10 @@ namespace FileManager
         static void Main(string[] args)
         {
             Functions.DeserializeConf();
-            string currentDirectory;
             var command = string.Empty;
-            currentDirectory = FileManagerr.Properties.Settings.Default.lastDirectory ?? @"C:\"; 
+            var currentDirectory = FileManagerr.Properties.Settings.Default.lastDirectory ?? @"C:\"; 
             Functions.DirectoryViewer(currentDirectory,0);
-            while (command.ToUpper() != "QUIT" && command.ToUpper() != "Q" && command.ToUpper() != "EXIT")
+            while (command != null && command.ToUpper() != "QUIT" && command.ToUpper() != "Q" && command.ToUpper() != "EXIT")
             {
                 Console.Write(": ");
                 command = Console.ReadLine();
