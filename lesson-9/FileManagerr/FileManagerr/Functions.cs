@@ -13,16 +13,20 @@ namespace FileManager
         {
             Console.BackgroundColor = ConsoleColor.DarkBlue;
             Console.ForegroundColor = ConsoleColor.White;
-            Console.SetWindowSize(121, 30);
+            Console.SetWindowSize(121, 35);
             Console.WriteLine("┌─────────────────────────────────────────────────────FILE-MANAGER─────────────────────────────────────────────────────┐");
             Console.WriteLine("│ COMMANDS:                                                                                                            │");
             Console.WriteLine("│ ls <path> - Просмотр файлов каталога                                cp <path1> <path2> - Копирование файла (каталога)│");
             Console.WriteLine("│                                                                                                                      │");
-            Console.WriteLine("│ dir <path> - Информация о катаголе                                  clear - для очистки консоли                      │");
+            Console.WriteLine("│ dir <path> - Информация о катаголе                                  clear - Очистки консоли                          │");
             Console.WriteLine("│                                                                                                                      │");
             Console.WriteLine("│ rm <path> - Удаление каталога(рекурсивно)/файла                     file <file> - Вывод информации о файле           │");
             Console.WriteLine("│                                                                                                                      │");
-            Console.WriteLine("│ Введите quit, q, exit для выхода                                                                                     │");
+            Console.WriteLine("│ mvdir <path1> <path2> - Перемещение/переимнование каталога          mkdir <path> - Создание каталога                 │");
+            Console.WriteLine("│                                                                                                                      │");
+            Console.WriteLine("│ mvfile <path1> <path2> - Перемещение/переимнование файла                                                             │");
+            Console.WriteLine("│                                                                                                                      │");
+            Console.WriteLine("│                                             Введите quit, q, exit для выхода                                         │");
             Console.WriteLine("└──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘");
         }
         /// <summary>
@@ -172,7 +176,6 @@ namespace FileManager
                         }
                         else
                         {
-                            
                             CopyFile(switchArray[1], switchArray[2]);
                         }
                     }
@@ -236,16 +239,53 @@ namespace FileManager
                     DeleteDirectory(switchArray[1]);
                 }
             }
+
+            if (switchArray[0].ToUpper() == "MKDIR")
+            {
+                try
+                {
+                    CreateDirectory(switchArray[1]); 
+                }
+                catch (ArgumentException)
+                {
+                    Console.WriteLine("Введите имя папки");
+                }
+                catch (IndexOutOfRangeException)
+                {
+                    Console.WriteLine("Введите имя папки");
+                }
+            }
+            if (switchArray[0].ToUpper() == "MVDIR")
+            {
+                MoveDirectory(switchArray[1], switchArray[2]);
+            }
+
+            if (switchArray[0].ToUpper() == "MVFILE")
+            {
+                MoveFile(switchArray[1], switchArray[2]);
+            }
         }
         /// <summary>
         /// Метод копирования файла
         /// </summary>
-        /// <param name="firstFile"></param>
-        /// <param name="secondFile"></param>
+        /// <param name="Целевой файл"></param>
+        /// <param name="Конечный файл"></param>
         private static void CopyFile(string firstFile, string secondFile)
         {
-            File.Copy(firstFile, secondFile);
-            Console.WriteLine($"Файл {firstFile} успешно скопирован");
+            bool flag = false;
+            try
+            {
+                File.Copy(firstFile, secondFile);
+                flag = true;
+            }
+            catch (IOException)
+            {
+                Console.WriteLine("Файл с таким именем уже существует.");
+            }
+
+            Console.WriteLine(flag == true
+                ? $"Файл {firstFile} успешно скопирован."
+                : $"Файл {firstFile} не удалось скопировать.");
         }
         /// <summary>
         /// Метод копирования каталога
@@ -374,6 +414,63 @@ namespace FileManager
             catch (FileNotFoundException)
             {
                 Console.WriteLine("Файл не найден");
+            }
+        }
+        /// <summary>
+        /// Метод создания нового каталога
+        /// </summary>
+        /// <param name="directoryName"></param>
+        private static void CreateDirectory(string directoryName)
+        {
+            if (Directory.Exists(directoryName))
+            {
+                Console.WriteLine("Папка с таким именем уже существует");
+            }
+            else
+            {
+                Directory.CreateDirectory(directoryName);
+                Console.WriteLine($"Новая директория {directoryName} успешно создана");
+            }
+        }
+        /// <summary>
+        /// Метод перемещения/переимнования каталога
+        /// </summary>
+        /// <param name="sourceDir"></param>
+        /// <param name="destinationDir"></param>
+        private static void MoveDirectory(string sourceDir, string destinationDir)
+        {
+            if (Directory.Exists(sourceDir))
+            {
+                Directory.Move(sourceDir,destinationDir);
+                Console.WriteLine($"Каталог {sourceDir} успешно перемещен в {destinationDir}!");
+            }
+            else
+            {
+                Console.WriteLine("Такой папки не существует");
+            }
+        }
+        /// <summary>
+        /// Метод перемещения/переименования файла
+        /// </summary>
+        /// <param name="sourceFile"></param>
+        /// <param name="destinationFile"></param>
+        private static void MoveFile(string sourceFile, string destinationFile)
+        {
+            try
+            {
+                if (File.Exists(sourceFile))
+                {
+                    File.Move(sourceFile,destinationFile);
+                    Console.WriteLine($"Файл {sourceFile} успешно перемещен/переименован в {destinationFile}!");
+                }
+                else
+                {
+                    Console.WriteLine("Файл с таким именем не найден!");
+                }
+            }
+            catch (IndexOutOfRangeException)
+            {
+                Console.WriteLine("Введите корректное имя файла");
             }
         }
     }

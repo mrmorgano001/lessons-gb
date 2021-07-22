@@ -5,9 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b2cf97b8-6934-48ec-b1ea-e45d8412e0d6" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/FileManagerr/Exceptions.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.FileManagerr/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.FileManagerr/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FileManagerr/FileManagerr.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/FileManagerr/FileManagerr.csproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FileManagerr/Functions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FileManagerr/Functions.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FileManagerr/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FileManagerr/Program.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,9 +28,10 @@
   </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
-      <option value="$PROJECT_DIR$/FileManagerr/Properties/AssemblyInfo.cs" />
       <option value="$PROJECT_DIR$/FileManagerr/Properties/Settings.settings" />
       <option value="$PROJECT_DIR$/FileManagerr/Program.cs" />
+      <option value="$PROJECT_DIR$/FileManagerr/Exceptions.cs" />
+      <option value="$PROJECT_DIR$/FileManagerr/Properties/AssemblyInfo.cs" />
       <option value="$PROJECT_DIR$/FileManagerr/Functions.cs" />
     </changedPaths>
   </component>
@@ -91,6 +93,10 @@
       <workItem from="1626938446124" duration="1757000" />
       <workItem from="1626940622284" duration="1594000" />
       <workItem from="1626943123797" duration="1104000" />
+      <workItem from="1626947556861" duration="1479000" />
+      <workItem from="1626949909624" duration="1345000" />
+      <workItem from="1626951720524" duration="1780000" />
+      <workItem from="1626953755101" duration="295000" />
     </task>
     <task id="LOCAL-00001" summary="Updated">
       <created>1626874339800</created>
