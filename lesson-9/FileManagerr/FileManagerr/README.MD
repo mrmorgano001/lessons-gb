@@ -1,7 +1,7 @@
 ﻿<html>
 <h1 align="center">FileManager for GeekBrains</h1>
 <img src="../../images/screnn.png">
-Для русскоязычных пользователей:
+<b><i>Для русскоязычных пользователей:</i></b>
 <br>
 Это программное обеспечение выполняет функцию консольного файлового менеджера.
 <br><b>Поддерживаемые команды:</b>
@@ -14,8 +14,8 @@
 <br>─ <b>clear</b> - Очистка консоли
 <br>─ <b>file file</b> - Вывод информации о файле
 <br>─ <b>mkdir path</b> - Создание каталога
-<br>
-For English-speaking users:
+<br><br>
+<b><i>For English-speaking users:</i></b>
 <br>
 This software features a console filegame function.
 <br><b>Supported commands:</b>
