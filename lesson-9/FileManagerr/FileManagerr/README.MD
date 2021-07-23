@@ -31,15 +31,29 @@ ____
 ```
 >Таким образом отобразится 3-я страница каталогов вашего рабочего стола.
 
-<h2>Features</h2>
-This software features a console filegame function.
-<br><b>Supported commands:</b>
-<br>─ <b>ls &lt;path&gt;</b> - Browse directory files
-<br>─ <b>rm &lt;path&gt;</b> - Deleting a directory (recursively) / file
-<br>─ <b>dir &lt;path&gt;</b> - Catalog information
-<br>─ <b>mvdir &lt;path1&gt; path2&gt;</b> - Moving / Renaming a Directory
-<br>─ <b>mvfile &lt;path1&gt; path2&gt;</b> - Moving / Renaming a File
-<br>─ <b>cp &lt;path1&gt; path2&gt;</b> - Copying a file / directory
-<br>─ <b>clear</b> - Cleaning the console
-<br>─ <b>file &lt;file&gt;</b> - Displaying information about a file
-<br>─ <b>mkdir &lt;path&gt;</b> - Creating a directory
+Features
+--------
+**Supported commands:**
+
+    ls <path> - Browse directory files
+    rm <path> - Deleting a directory (recursively) / file
+    dir <path> - Catalog information
+    mvdir <path1> <path2> - Moving / Renaming a Directory
+    mvfile <path1> <path2> - Moving / Renaming a File
+    cp <path1> <path2> - Copying a file / directory
+    clear - Cleaning the console
+    file <file> - Displaying information about a file
+    mkdir <path> - Creating a directory
+---
+>In the root directory of the program there is a file "config.cfg" in which you can set the initial directory
+and the number of displayed directories on one page.
+```CFG
+lastDirectory = C:\Forgithub
+pageCount = 10
+```
+____
+>To go to the next page, you must specify the "-p" parameter
+```C#
+   ls C:\Users\User\Desktop -p 2
+```
+>This will display the 3rd page of your desktop directories.
