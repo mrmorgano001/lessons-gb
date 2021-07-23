@@ -13,7 +13,7 @@
 <br>─ <b>clear</b> - Очистка консоли
 <br>─ <b>file &lt;file&gt;</b> - Вывод информации о файле
 <br>─ <b>mkdir &lt;path&gt;</b> - Создание каталога
-
+<br>
 В корневом каталоге программы имеется файл "config.cfg" в котором можно задать начальную директорию
 <br>и количество отображаемых каталогов на одной странице.
 <br>
@@ -22,6 +22,10 @@
 Пример:<br>
 ls C:\Users\User\Desktop -p 2 - Таким образом отобразится 3-я страница каталогов вашего рабочего стола.
 <br><br>
+4. Enter your API in `config.js`
+   ```C#
+   const API_KEY = 'ENTER YOUR API';
+   ```
 <h2>Features</h2>
 This software features a console filegame function.
 <br><b>Supported commands:</b>
