@@ -23,7 +23,7 @@
 ls C:\Users\User\Desktop -p 2 - Таким образом отобразится 3-я страница каталогов вашего рабочего стола.
 <br><br>
 4. Enter your API in `config.js`
-   ```JS
+    ```JS
    const API_KEY = 'ENTER YOUR API';
    ```
 <h2>Features</h2>
