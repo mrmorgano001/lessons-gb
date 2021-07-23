@@ -16,8 +16,9 @@
     clear - Очистка консоли
     file <file> - Вывод информации о файле
     mkdir <path> - Создание каталога
+    q, quit, exit - Для выхода из программы
 ____
-
+***Регистр ввода не важен***
 >В корневом каталоге программы имеется файл "config.cfg" в котором можно задать начальную директорию
 и количество отображаемых каталогов на одной странице.
 ```CFG
@@ -44,6 +45,7 @@ Features
     clear - Cleaning the console
     file <file> - Displaying information about a file
     mkdir <path> - Creating a directory
+    q,quit,exit - To exit the program
 ---
 >In the root directory of the program there is a file "config.cfg" in which you can set the initial directory
 and the number of displayed directories on one page.
