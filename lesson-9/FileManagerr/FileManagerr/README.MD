@@ -1,31 +1,36 @@
-﻿<html>
-<h1 align="center">FileManager for GeekBrains</h1>
-<img src="../../images/screnn.png">
-<h2>Возможности</h2>
-Это программное обеспечение выполняет функцию консольного файлового менеджера.
-<br><b>Поддерживаемые команды:</b>
-<br>─ <b>ls &lt;path&gt;</b> - Просмотр файлов каталога
-<br>─ <b>rm &lt;path&gt;</b> - Удаление каталога(рекурсивно)/файла
-<br>─ <b>dir &lt;path&gt;</b> - Информация о каталоге
-<br>─ <b>mvdir &lt;path1&gt; &lt;path2&gt;</b> - Перемещение/переименование каталога
-<br>─ <b>mvfile &lt;path1&gt; &lt;path2&gt;</b> - Перемещение/переименование файла
-<br>─ <b>cp &lt;path1&gt; &lt;path2&gt;</b> - Копирование файла/каталога
-<br>─ <b>clear</b> - Очистка консоли
-<br>─ <b>file &lt;file&gt;</b> - Вывод информации о файле
-<br>─ <b>mkdir &lt;path&gt;</b> - Создание каталога
-<br>
-В корневом каталоге программы имеется файл "config.cfg" в котором можно задать начальную директорию
-<br>и количество отображаемых каталогов на одной странице.
-<br>
-<br>
-Для перехода на следующую страницу необходимо указывать параметр "-p"<br>
-Пример:<br>
-ls C:\Users\User\Desktop -p 2 - Таким образом отобразится 3-я страница каталогов вашего рабочего стола.
-<br><br>
-4. Enter your API in `config.js`
-    ```JS
-   const API_KEY = 'ENTER YOUR API';
-   ```
+﻿FileManager for GeekBrains
+==========================
+
+![FileManagerScreen](https://github.com/mrmorgano001/lessons-gb/blob/main/lesson-9/images/screnn.png)
+
+Возможности
+-----------
+**Поддерживаемые команды:**
+
+    ls <path> - Просмотр файлов каталога
+    rm <path> - Удаление каталога(рекурсивно)/файла
+    dir <path> - Информация о каталоге
+    mvdir <path1> <path2> - Перемещение/переименование каталога
+    mvfile <path1> <path2> - Перемещение/переименование файла
+    cp <path1> <path2> - Копирование файла/каталога
+    clear - Очистка консоли
+    file <file> - Вывод информации о файле
+    mkdir <path> - Создание каталога
+____
+
+>В корневом каталоге программы имеется файл "config.cfg" в котором можно задать начальную директорию
+и количество отображаемых каталогов на одной странице.
+```CFG
+lastDirectory = C:\Forgithub
+pageCount = 10
+```
+____
+>Для перехода на следующую страницу необходимо указывать параметр "-p"
+```C#
+   ls C:\Users\User\Desktop -p 2
+```
+>Таким образом отобразится 3-я страница каталогов вашего рабочего стола.
+
 <h2>Features</h2>
 This software features a console filegame function.
 <br><b>Supported commands:</b>
@@ -38,4 +43,3 @@ This software features a console filegame function.
 <br>─ <b>clear</b> - Cleaning the console
 <br>─ <b>file &lt;file&gt;</b> - Displaying information about a file
 <br>─ <b>mkdir &lt;path&gt;</b> - Creating a directory
-</html>
