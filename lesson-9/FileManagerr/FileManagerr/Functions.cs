@@ -1,4 +1,4 @@
-﻿using System;
+﻿ using System;
 using System.IO;
 using System.Linq;
 
@@ -24,9 +24,9 @@ namespace FileManager
             Console.WriteLine("│                                                                                                                      │");
             Console.WriteLine("│ mvdir <path1> <path2> - Перемещение/переимнование каталога          mkdir <path> - Создание каталога                 │");
             Console.WriteLine("│                                                                                                                      │");
-            Console.WriteLine("│ mvfile <path1> <path2> - Перемещение/переимнование файла                                                             │");
+            Console.WriteLine("│ mvfile <path1> <path2> - Перемещение/переимнование файла            Ctrl + C, quit, q, exit - Выход из программы     │");
             Console.WriteLine("│                                                                                                                      │");
-            Console.WriteLine("│                                             Введите quit, q, exit для выхода                                         │");
+            Console.WriteLine("│                                                                                                                      │");
             Console.WriteLine("└──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘");
         }
         /// <summary>
@@ -230,14 +230,21 @@ namespace FileManager
 
             if (switchArray[0].ToUpper() == "RM") // Обработка команды удаления
             {
-                if (File.Exists(switchArray[1]))
+                try
                 {
-                    DeleteFile(switchArray[1]);
-                }
-                else
+                    if (File.Exists(switchArray[1]))
+                    {
+                        DeleteFile(switchArray[1]);
+                    }
+                    else
+                    {
+                        DeleteDirectory(switchArray[1]);
+                    }
+                } catch (IndexOutOfRangeException)
                 {
-                    DeleteDirectory(switchArray[1]);
+                    Console.WriteLine("Не найден файл/папка");
                 }
+                
             }
 
             if (switchArray[0].ToUpper() == "MKDIR")
@@ -257,12 +264,27 @@ namespace FileManager
             }
             if (switchArray[0].ToUpper() == "MVDIR")
             {
-                MoveDirectory(switchArray[1], switchArray[2]);
+               try
+                {
+                    MoveDirectory(switchArray[1], switchArray[2]);
+                }
+                catch (IndexOutOfRangeException)
+                {
+                    Console.WriteLine("Укажите начальную и конечную директории");
+                }
+                
             }
 
             if (switchArray[0].ToUpper() == "MVFILE")
             {
-                MoveFile(switchArray[1], switchArray[2]);
+                try
+                {
+                    MoveFile(switchArray[1], switchArray[2]);
+                }catch (IndexOutOfRangeException)
+                {
+                    Console.WriteLine("Укажите начальный и конечный файл");
+                }
+                
             }
         }
         /// <summary>
@@ -441,8 +463,17 @@ namespace FileManager
         {
             if (Directory.Exists(sourceDir))
             {
-                Directory.Move(sourceDir,destinationDir);
-                Console.WriteLine($"Каталог {sourceDir} успешно перемещен в {destinationDir}!");
+                bool flag = false;
+                try
+                {
+                    Directory.Move(sourceDir, destinationDir);
+                    flag = true;
+                }catch (IOException)
+                {
+                    Console.WriteLine("Начальная и конечная директории должны отличаться");
+                }
+                if (flag) Console.WriteLine($"Каталог {sourceDir} успешно перемещен в {destinationDir}!");
+                else Console.WriteLine("Перемещение не удалось");
             }
             else
             {
@@ -471,6 +502,14 @@ namespace FileManager
             catch (IndexOutOfRangeException)
             {
                 Console.WriteLine("Введите корректное имя файла");
+            }
+            catch (IOException)
+            {
+                Console.WriteLine("Файл уже существует");
+            }
+            catch (ArgumentException)
+            {
+                Console.WriteLine("Введите второй аргумент");
             }
         }
     }
