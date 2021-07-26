@@ -5,7 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b2cf97b8-6934-48ec-b1ea-e45d8412e0d6" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/FileManagerr/README.MD" beforeDir="false" afterPath="$PROJECT_DIR$/FileManagerr/README.MD" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.FileManagerr/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.FileManagerr/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FileManagerr/Exceptions.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/FileManagerr/FileManagerr.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/FileManagerr/FileManagerr.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FileManagerr/Functions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FileManagerr/Functions.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,14 +26,17 @@
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/8462C93B-00B5-4616-9C50-6EB8281FD255/7e/bdeea2f4/File.cs" root0="SKIP_HIGHLIGHTING" />
+  </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
       <option value="$PROJECT_DIR$/FileManagerr/Properties/Settings.settings" />
       <option value="$PROJECT_DIR$/FileManagerr/Program.cs" />
       <option value="$PROJECT_DIR$/FileManagerr/Exceptions.cs" />
       <option value="$PROJECT_DIR$/FileManagerr/Properties/AssemblyInfo.cs" />
-      <option value="$PROJECT_DIR$/FileManagerr/Functions.cs" />
       <option value="$PROJECT_DIR$/FileManagerr/README.MD" />
+      <option value="$PROJECT_DIR$/FileManagerr/Functions.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1vLjNUyACIgRyhs80iogxHTxPIG" />
@@ -45,6 +51,10 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="preferences.sourceCode.C#" />
@@ -100,6 +110,7 @@
       <workItem from="1626960966613" duration="1051000" />
       <workItem from="1626962055045" duration="325000" />
       <workItem from="1627016393238" duration="1768000" />
+      <workItem from="1627302330294" duration="2069000" />
     </task>
     <task id="LOCAL-00001" summary="Updated">
       <created>1626874339800</created>

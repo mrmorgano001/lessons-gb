@@ -22,9 +22,9 @@ namespace FileManager
             Console.WriteLine("│                                                                                                                      │");
             Console.WriteLine("│ rm <path> - Удаление каталога(рекурсивно)/файла                     file <file> - Вывод информации о файле           │");
             Console.WriteLine("│                                                                                                                      │");
-            Console.WriteLine("│ mvdir <path1> <path2> - Перемещение/переимнование каталога          mkdir <path> - Создание каталога                 │");
+            Console.WriteLine("│ mvdir <path1> <path2> - Перемещение/переименование каталога          mkdir <path> - Создание каталога                │");
             Console.WriteLine("│                                                                                                                      │");
-            Console.WriteLine("│ mvfile <path1> <path2> - Перемещение/переимнование файла            Ctrl + C, quit, q, exit - Выход из программы     │");
+            Console.WriteLine("│ mvfile <path1> <path2> - Перемещение/переименование файла            Ctrl + C, quit, q, exit - Выход из программы    │");
             Console.WriteLine("│                                                                                                                      │");
             Console.WriteLine("│                                                                                                                      │");
             Console.WriteLine("└──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘");
@@ -294,7 +294,7 @@ namespace FileManager
         /// <param name="Конечный файл"></param>
         private static void CopyFile(string firstFile, string secondFile)
         {
-            bool flag = false;
+            var flag = false;
             try
             {
                 File.Copy(firstFile, secondFile);
@@ -329,7 +329,7 @@ namespace FileManager
         /// <summary>
         /// Вывод информации о директории
         /// </summary>
-        /// <param name="directoryPath"></param>
+        /// <param name="Путь до директории"></param>
         private static void DirectoryInfo(string directoryPath)
         {
             try
@@ -463,7 +463,7 @@ namespace FileManager
         {
             if (Directory.Exists(sourceDir))
             {
-                bool flag = false;
+                var flag = false;
                 try
                 {
                     Directory.Move(sourceDir, destinationDir);
@@ -472,8 +472,10 @@ namespace FileManager
                 {
                     Console.WriteLine("Начальная и конечная директории должны отличаться");
                 }
-                if (flag) Console.WriteLine($"Каталог {sourceDir} успешно перемещен в {destinationDir}!");
-                else Console.WriteLine("Перемещение не удалось");
+
+                Console.WriteLine(flag
+                    ? $"Каталог {sourceDir} успешно перемещен в {destinationDir}!"
+                    : "Перемещение не удалось");
             }
             else
             {
